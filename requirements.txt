@@ -1,0 +1,4 @@
+Flask
+pinecone-client
+pyvis
+python-dotenv
