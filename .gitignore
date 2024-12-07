@@ -1,1 +1,29 @@
+# Ignore the generated Lib folder
+Lib/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore environment variables file
 .env
+
+# Ignore Flask's default files
+*.db
+*.sqlite
+
+# Ignore virtual environment
+venv/
+env/
+
+# Ignore OS-specific files (macOS, Linux, Windows)
+.DS_Store
+Thumbs.db
+
+# Ignore IDE configuration folders
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
