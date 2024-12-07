@@ -14,7 +14,7 @@ index_name = os.getenv("PINECONE_INDEX_NAME")
 # Initialize Flask app for web server
 app = Flask(__name__)
 
-# Initialize Pinecone client using the API key
+# Initialize Pinecone client using the API key 
 pc = pinecone.Pinecone(api_key=api_key)
 
 # Initialize the Pinecone index with the provided index name
