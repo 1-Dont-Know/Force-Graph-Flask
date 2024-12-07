@@ -11,7 +11,10 @@ load_dotenv()
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_INDEX_NAME")
 
-# Initialize Pinecone client using the API key
+# Initialize Flask app for web server
+app = Flask(__name__)
+
+# Initialize Pinecone client using the API key 
 pc = pinecone.Pinecone(api_key=api_key)
 
 # Initialize the Pinecone index with the provided index name
@@ -147,9 +150,10 @@ def fetch_connected_data(disease_id):
     fetch_all_data(disease_id, visited, net)  # Recursively fetch data starting from the disease ID
     return net
 
-# Vercel-compatible function handler
-def handler(request):
-    """Handle the request and render the Flask app with user input for disease ID."""
+# Route to render the Flask app with user input for disease ID
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    """Handle user input and display the graph visualization of connected diseases and symptoms."""
     global preset_disease_id  # Use the preset disease ID for the initial view
     if request.method == 'POST':
         # Update the preset disease ID from user input
@@ -173,3 +177,7 @@ def handler(request):
         graph_html = file.read()
 
     return render_template('index.html', graph_html=graph_html)
+
+# Run Flask app in debug mode
+if __name__ == '__main__':
+    app.run(debug=True)
